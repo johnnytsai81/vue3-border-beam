@@ -15,6 +15,7 @@
         border-color="#ffffff"
         :duration="2"
         :size="30"
+        :show-beam="randomSelectedIndexes.includes(index)"
       />
     </div>
     <div class="mt-4 flex gap-2">
@@ -43,6 +44,28 @@
         10x10
       </button>
     </div>
+    <div class="mt-4 flex gap-4">
+      <label class="flex items-center gap-2 text-white cursor-pointer">
+        <input
+          type="radio"
+          name="displayMode"
+          value="all"
+          v-model="displayMode"
+          class="w-4 h-4"
+        />
+        <span>All</span>
+      </label>
+      <label class="flex items-center gap-2 text-white cursor-pointer">
+        <input
+          type="radio"
+          name="displayMode"
+          value="random"
+          v-model="displayMode"
+          class="w-4 h-4"
+        />
+        <span>Random</span>
+      </label>
+    </div>
   </div>
 </template>
 
@@ -53,8 +76,43 @@ import {ref, computed} from 'vue'
 const gridSize = ref(1)
 const gridKey = ref(0)
 
+const displayMode = ref('all')
+
+// Grid數量
 const totalItems = computed(() => gridSize.value * gridSize.value)
 
+// 計算要顯示的數量
+const randomBeamCount = computed(() => {
+  if (displayMode.value === 'all') return totalItems.value
+  return gridSize.value
+})
+
+const randomSelectedIndexes = computed(() => {
+  // 如果為all則顯示全部
+  if (displayMode.value === 'all') {
+    const allIndexes = []
+    for (let i = 1; i <= totalItems.value; i++) {
+      allIndexes.push(i)
+    }
+    return allIndexes
+  }
+
+  const indexes = []
+  const total = totalItems.value
+  const count = randomBeamCount.value
+
+  // 生成隨機數且不重複
+  while (indexes.length < count && indexes.length < total) {
+    const randomIndex = Math.floor(Math.random() * total) + 1
+    if (!indexes.includes(randomIndex)) {
+      indexes.push(randomIndex)
+    }
+  }
+
+  return indexes
+})
+
+// 切grid數值
 const setGrid = (size) => {
   gridSize.value = size
   gridKey.value++

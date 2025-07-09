@@ -2,6 +2,7 @@
   <div
     class="border-beam"
     :style="cssVars"
+    :class="props.showBeam ? '':'no-beam'"
   >
     <slot />
   </div>
@@ -24,6 +25,8 @@ interface Props {
   duration?: number;
   /** 邊框元素大小 (%) */
   size?: number;
+  /** 是否顯示beam */
+  showBeam?: boolean;
 }
 // #endregion Props
 
@@ -34,6 +37,7 @@ const props = withDefaults(defineProps<Props>(), {
   borderRadius: 8,
   duration: 5,
   size: 200,
+  showBeam: true,
 })
 
 // 計算 CSS 變數
@@ -56,25 +60,27 @@ const cssVars = computed(() => ({
   mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
   mask-clip: padding-box, border-box;
   mask-composite: intersect;
-  &::before {
-    content: '';
-    position: absolute;
-    aspect-ratio: 1;
-    width: calc(var(--size) * 1%);
-    animation: border-beam-reverse calc(var(--duration) * 1s) cubic-bezier(0.4, 0.14, 0.6, 0.86) infinite;
-    background: var(--border-color);
-    offset-anchor: calc(var(--anchor) * 1%) 90%;
-    offset-path: rect(0 auto auto 0 round calc(var(--size) * 1%));
-  }
-  &::after {
-    content: '';
-    position: absolute;
-    aspect-ratio: 1;
-    width: calc(var(--size) * 1%);
-    animation: border-beam calc(var(--duration) * 1s) cubic-bezier(0.4, 0.14, 0.6, 0.86) infinite;
-    background: var(--border-color);
-    offset-anchor: calc(var(--anchor) * 1%) 90%;
-    offset-path: rect(0 auto auto 0 round calc(var(--size) * 1%));
+  &:not(.no-beam){
+    &::before {
+      content: '';
+      position: absolute;
+      aspect-ratio: 1;
+      width: calc(var(--size) * 1%);
+      animation: border-beam-reverse calc(var(--duration) * 1s) cubic-bezier(0.4, 0.14, 0.6, 0.86) infinite;
+      background: var(--border-color);
+      offset-anchor: calc(var(--anchor) * 1%) 90%;
+      offset-path: rect(0 auto auto 0 round calc(var(--size) * 1%));
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      aspect-ratio: 1;
+      width: calc(var(--size) * 1%);
+      animation: border-beam calc(var(--duration) * 1s) cubic-bezier(0.4, 0.14, 0.6, 0.86) infinite;
+      background: var(--border-color);
+      offset-anchor: calc(var(--anchor) * 1%) 90%;
+      offset-path: rect(0 auto auto 0 round calc(var(--size) * 1%));
+    }
   }
 }
 
