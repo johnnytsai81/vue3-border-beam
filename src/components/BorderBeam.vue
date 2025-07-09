@@ -31,8 +31,7 @@ const props = withDefaults(defineProps<Props>(), {
   anchor: 45,
   borderWidth: 1.5,
   borderColor: '#ffffff',
-  borderRadius: 16,
-  delay: '-0s',
+  borderRadius: 8,
   duration: 5,
   size: 200,
 })
@@ -48,7 +47,7 @@ const cssVars = computed(() => ({
 }))
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .border-beam {
   position: relative;
   inset: 0;
@@ -57,28 +56,26 @@ const cssVars = computed(() => ({
   mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
   mask-clip: padding-box, border-box;
   mask-composite: intersect;
-}
-
-.border-beam::before {
-  content: '';
-  position: absolute;
-  aspect-ratio: 1;
-  width: calc(var(--size) * 1px);
-  animation: border-beam-reverse calc(var(--duration) * 1s) cubic-bezier(.4,.12,.59,.85) infinite;
-  background: var(--border-color);
-  offset-anchor: calc(var(--anchor) * 1%) 50%;
-  offset-path: rect(0 auto auto 0 round calc(var(--border-radius) * 1px));
-}
-
-.border-beam::after {
-  content: '';
-  position: absolute;
-  aspect-ratio: 1;
-  width: calc(var(--size) * 1px);
-  animation: border-beam calc(var(--duration) * 1s) cubic-bezier(.4,.12,.59,.85) infinite;
-  background: var(--border-color);
-  offset-anchor: calc(var(--anchor) * 1%) 50%;
-  offset-path: rect(0 auto auto 0 round calc(var(--border-radius) * 1px));
+  &::before {
+    content: '';
+    position: absolute;
+    aspect-ratio: 1;
+    width: calc(var(--size) * 1px);
+    animation: border-beam-reverse calc(var(--duration) * 1s) cubic-bezier(.4,.12,.59,.85) infinite;
+    background: var(--border-color);
+    offset-anchor: calc(var(--anchor) * 1%) 50%;
+    offset-path: rect(0 auto auto 0 round calc(var(--border-radius) * 1px));
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    aspect-ratio: 1;
+    width: calc(var(--size) * 1px);
+    animation: border-beam calc(var(--duration) * 1s) cubic-bezier(.4,.12,.59,.85) infinite;
+    background: var(--border-color);
+    offset-anchor: calc(var(--anchor) * 1%) 50%;
+    offset-path: rect(0 auto auto 0 round calc(var(--border-radius) * 1px));
+  }
 }
 
 @keyframes border-beam {
