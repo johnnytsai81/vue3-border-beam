@@ -11,7 +11,6 @@
         v-for="index in totalItems"
         :key="`${gridKey}-${index}`"
         class="w-full aspect-square"
-        :anchor="45"
         :border-width="2"
         border-color="#ffffff"
         :duration="2"

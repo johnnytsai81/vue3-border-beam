@@ -12,7 +12,7 @@ import { computed } from 'vue'
 
 // #region Props
 interface Props {
-  /** 邊框元素位置 (0-360 度) */
+  /** 邊框元素位置 (%) */
   anchor?: number;
   /** 邊框寬度 */
   borderWidth?: number;
@@ -28,7 +28,7 @@ interface Props {
 // #endregion Props
 
 const props = withDefaults(defineProps<Props>(), {
-  anchor: 45,
+  anchor: 50,
   borderWidth: 1.5,
   borderColor: '#ffffff',
   borderRadius: 8,
@@ -63,8 +63,8 @@ const cssVars = computed(() => ({
     width: calc(var(--size) * 1%);
     animation: border-beam-reverse calc(var(--duration) * 1s) cubic-bezier(0.4, 0.14, 0.6, 0.86) infinite;
     background: var(--border-color);
-    offset-anchor: calc(var(--anchor) * 1%) 50%;
-    offset-path: rect(0 auto auto 0 round calc(var(--border-radius) * 1px));
+    offset-anchor: calc(var(--anchor) * 1%) 90%;
+    offset-path: rect(0 auto auto 0 round calc(var(--size) * 1%));
   }
   &::after {
     content: '';
@@ -73,8 +73,8 @@ const cssVars = computed(() => ({
     width: calc(var(--size) * 1%);
     animation: border-beam calc(var(--duration) * 1s) cubic-bezier(0.4, 0.14, 0.6, 0.86) infinite;
     background: var(--border-color);
-    offset-anchor: calc(var(--anchor) * 1%) 50%;
-    offset-path: rect(0 auto auto 0 round calc(var(--border-radius) * 1px));
+    offset-anchor: calc(var(--anchor) * 1%) 90%;
+    offset-path: rect(0 auto auto 0 round calc(var(--size) * 1%));
   }
 }
 
