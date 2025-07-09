@@ -22,7 +22,7 @@ interface Props {
   borderRadius?: number;
   /** 動畫持續時間 (秒) */
   duration?: number;
-  /** 邊框元素大小 (px) */
+  /** 邊框元素大小 (%) */
   size?: number;
 }
 // #endregion Props
@@ -60,8 +60,8 @@ const cssVars = computed(() => ({
     content: '';
     position: absolute;
     aspect-ratio: 1;
-    width: calc(var(--size) * 1px);
-    animation: border-beam-reverse calc(var(--duration) * 1s) cubic-bezier(.4,.12,.59,.85) infinite;
+    width: calc(var(--size) * 1%);
+    animation: border-beam-reverse calc(var(--duration) * 1s) cubic-bezier(0.4, 0.14, 0.6, 0.86) infinite;
     background: var(--border-color);
     offset-anchor: calc(var(--anchor) * 1%) 50%;
     offset-path: rect(0 auto auto 0 round calc(var(--border-radius) * 1px));
@@ -70,8 +70,8 @@ const cssVars = computed(() => ({
     content: '';
     position: absolute;
     aspect-ratio: 1;
-    width: calc(var(--size) * 1px);
-    animation: border-beam calc(var(--duration) * 1s) cubic-bezier(.4,.12,.59,.85) infinite;
+    width: calc(var(--size) * 1%);
+    animation: border-beam calc(var(--duration) * 1s) cubic-bezier(0.4, 0.14, 0.6, 0.86) infinite;
     background: var(--border-color);
     offset-anchor: calc(var(--anchor) * 1%) 50%;
     offset-path: rect(0 auto auto 0 round calc(var(--border-radius) * 1px));
@@ -80,25 +80,25 @@ const cssVars = computed(() => ({
 
 @keyframes border-beam {
   0% {
-    offset-distance: 80%;
+    offset-distance: -60%;
   }
   50% {
-    offset-distance: 30%;
+    offset-distance: -10%;
   }
   100% {
-    offset-distance: -20%;
+    offset-distance: 40%;
   }
 }
 
 @keyframes border-beam-reverse {
   0% {
-    offset-distance: 130%;
+    offset-distance: -10%;
   }
   50% {
-    offset-distance: 80%;
+    offset-distance: 40%;
   }
   100% {
-    offset-distance: 30%;
+    offset-distance: 90%;
   }
 }
 </style>

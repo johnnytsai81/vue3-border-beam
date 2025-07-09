@@ -9,10 +9,10 @@
       }">
       <BorderBeam
         v-for="index in totalItems"
-        :key="index"
+        :key="`${gridKey}-${index}`"
         class="w-full aspect-square"
         :anchor="45"
-        :border-width="3"
+        :border-width="2"
         border-color="#ffffff"
         :duration="2"
         :size="30"
@@ -52,10 +52,12 @@ import BorderBeam from "@/components/BorderBeam.vue";
 import {ref, computed} from 'vue'
 
 const gridSize = ref(1)
+const gridKey = ref(0)
 
 const totalItems = computed(() => gridSize.value * gridSize.value)
 
 const setGrid = (size) => {
   gridSize.value = size
+  gridKey.value++
 }
 </script>
