@@ -1,5 +1,5 @@
 <template>
-  <div class="relative bg-gray-900 w-screen h-screen p-8">
+  <div class="relative bg-gray-900 w-screen p-8">
     <div class="grid gap-1"
          :class="{
         'grid-cols-1': gridSize === 1,
