@@ -7,7 +7,8 @@
         'grid-cols-5': gridSize === 5,
         'grid-cols-10': gridSize === 10
       }">
-      <!--      <BorderBeam-->
+      <!--   使用offset-path的方法   -->
+      <!--      <BorderBeamA-->
       <!--        v-for="index in totalItems"-->
       <!--        :key="`${gridKey}-${index}`"-->
       <!--        class="w-full aspect-square"-->
@@ -17,11 +18,13 @@
       <!--        :size="30"-->
       <!--        :show-beam="randomSelectedIndexes.includes(index)"-->
       <!--      />-->
+      <!--   使用animateMotion的方法   -->
       <BorderBeamB
         v-for="index in totalItems"
         :key="`${gridKey}-${index}`"
         class="w-full aspect-square"
         :border-width="2"
+        :border-radius="8"
         border-color="#ffffff"
         background="#555555"
         :duration="2"

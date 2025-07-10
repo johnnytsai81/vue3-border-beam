@@ -40,7 +40,7 @@
         >
           <animateMotion
             keyTimes="0;0.1;0.4;0.5;0.6;0.9;1"
-            keyPoints="0;0.1;0.42;0.5;0.6;0.92;1"
+            keyPoints="0;0.05;0.42;0.5;0.55;0.92;1"
             calcMode="linear"
             :dur="`${duration}s`"
             repeatCount="indefinite"
@@ -56,7 +56,7 @@
           <animateMotion
             :begin="`${- duration / 2}s`"
             keyTimes="0;0.1;0.4;0.5;0.6;0.9;1"
-            keyPoints="0;0.1;0.42;0.5;0.6;0.92;1"
+            keyPoints="0;0.05;0.42;0.5;0.55;0.92;1"
             calcMode="linear"
             :dur="`${duration}s`"
             repeatCount="indefinite"
