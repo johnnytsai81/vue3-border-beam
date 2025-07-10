@@ -7,15 +7,27 @@
         'grid-cols-5': gridSize === 5,
         'grid-cols-10': gridSize === 10
       }">
-      <BorderBeam
+      <!--      <BorderBeam-->
+      <!--        v-for="index in totalItems"-->
+      <!--        :key="`${gridKey}-${index}`"-->
+      <!--        class="w-full aspect-square"-->
+      <!--        :border-width="2"-->
+      <!--        border-color="#ffffff"-->
+      <!--        :duration="2"-->
+      <!--        :size="30"-->
+      <!--        :show-beam="randomSelectedIndexes.includes(index)"-->
+      <!--      />-->
+      <BorderBeamB
         v-for="index in totalItems"
         :key="`${gridKey}-${index}`"
         class="w-full aspect-square"
         :border-width="2"
         border-color="#ffffff"
+        background="#555555"
         :duration="2"
-        :size="30"
+        :size="10"
         :show-beam="randomSelectedIndexes.includes(index)"
+        :shape="displayShape"
       />
     </div>
     <div class="mt-4 flex gap-2">
@@ -66,17 +78,41 @@
         <span>Random</span>
       </label>
     </div>
+    <div class="mt-4 flex gap-4">
+      <label class="flex items-center gap-2 text-white cursor-pointer">
+        <input
+          type="radio"
+          name="displayShape"
+          value="heart"
+          v-model="displayShape"
+          class="w-4 h-4"
+        />
+        <span>Heart</span>
+      </label>
+      <label class="flex items-center gap-2 text-white cursor-pointer">
+        <input
+          type="radio"
+          name="displayShape"
+          value="rectangle"
+          v-model="displayShape"
+          class="w-4 h-4"
+        />
+        <span>Rectangle</span>
+      </label>
+    </div>
   </div>
 </template>
 
-<script setup>
-import BorderBeam from "@/components/BorderBeam.vue";
+<script setup lang="ts">
+// import BorderBeamA from "@/components/BorderBeamA.vue";
+import BorderBeamB from "@/components/BorderBeamB.vue";
 import {ref, computed} from 'vue'
 
 const gridSize = ref(1)
 const gridKey = ref(0)
 
 const displayMode = ref('all')
+const displayShape = ref('heart')
 
 // Grid數量
 const totalItems = computed(() => gridSize.value * gridSize.value)
@@ -97,7 +133,7 @@ const randomSelectedIndexes = computed(() => {
     return allIndexes
   }
 
-  const indexes = []
+  const indexes: number[] = []
   const total = totalItems.value
   const count = randomBeamCount.value
 
@@ -113,7 +149,7 @@ const randomSelectedIndexes = computed(() => {
 })
 
 // 切grid數值
-const setGrid = (size) => {
+const setGrid = (size: number) => {
   gridSize.value = size
   gridKey.value++
 }
