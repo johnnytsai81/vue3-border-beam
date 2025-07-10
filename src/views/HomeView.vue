@@ -1,5 +1,5 @@
 <template>
-  <div class="relative bg-gray-900 w-screen p-8">
+  <div class="relative bg-gray-900 w-screen min-h-screen p-8">
     <div class="grid gap-1"
          :class="{
         'grid-cols-1': gridSize === 1,
@@ -18,6 +18,7 @@
       <!--        :size="30"-->
       <!--        :show-beam="randomSelectedIndexes.includes(index)"-->
       <!--      />-->
+
       <!--   使用animateMotion的方法   -->
       <BorderBeamB
         v-for="index in totalItems"

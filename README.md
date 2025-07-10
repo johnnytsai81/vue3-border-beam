@@ -1,18 +1,17 @@
-# vue3-todolist
+# vue3-border-beam
 
-This template should help get you started developing with Vue 3 in Vite.
+![閃光邊框](./public/images/pic01.gif)
 
-## Recommended IDE Setup
+# 功能
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+* 走線動畫
+* 4種格子數量切換模式(1x1、3x3、5x5、10x10)
+* 2種顯示模式切換 (All、Random)
+* 2種形狀模式切換 (Heart、Rectangle)
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
+### P.S.
+* BorderBeamB 使用animateMotion的方法完成效果
+* BorderBeamA 使用offset-path的方法完成但無法實現心形
 
 ## Project Setup
 
