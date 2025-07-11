@@ -122,11 +122,33 @@ const generatePath = (width:number , height:number , shape:string) => {
     case 'heart':
       return generateHeartPath(centerX, centerY, radius)
     case 'rectangle':
-      const r = props.borderRadius
-      return `M ${r},0 L ${width - r},0 Q ${width},0 ${width},${r} L ${width},${height - r} Q ${width},${height} ${width - r},${height} L ${r},${height} Q 0,${height} 0,${height - r} L 0,${r} Q 0,0 ${r},0`
+      return generateRectanglePath(width, height, props.borderRadius, props.borderWidth)
     default:
       return generateHeartPath(centerX, centerY, radius)
   }
+}
+
+// 生成矩形路徑
+const generateRectanglePath = (width: number, height: number, borderRadius: number, borderWidth: number) => {
+  // 考慮邊框寬度的偏移
+  const offset = borderWidth / 2
+  const w = width - offset * 2
+  const h = height - offset * 2
+  const x = offset
+  const y = offset
+
+  // 確保圓角半徑不會太大
+  const r = Math.min(borderRadius, w / 2, h / 2)
+
+  return `M ${x + r},${y}
+          L ${x + w - r},${y}
+          Q ${x + w},${y} ${x + w},${y + r}
+          L ${x + w},${y + h - r}
+          Q ${x + w},${y + h} ${x + w - r},${y + h}
+          L ${x + r},${y + h}
+          Q ${x},${y + h} ${x},${y + h - r}
+          L ${x},${y + r}
+          Q ${x},${y} ${x + r},${y} Z`
 }
 
 // 生成愛心路徑
